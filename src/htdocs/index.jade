@@ -1,0 +1,9 @@
+extends ./layout/main.jade
+include ./includes/image.jade
+
+block content
+  h1=t('title')
+  h2
+    span.firstName=me.firstName
+    span.lastName=me.lastName
+  img(src=imagePath('general','logo') )
