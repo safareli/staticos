@@ -11,9 +11,6 @@ slagifier(marked)
 
 R = require 'ramda'
 
-log = (a)->
-  console.log a
-  a
 module.exports = (gulp, plugins, config)->
   gulp.task 'htdocs', ->
     
@@ -31,13 +28,13 @@ module.exports = (gulp, plugins, config)->
           locals: merge true, data,
             t: localize
             imagePath: (baseDir,image)->
-              path.join(config.dir.build.images, baseDir, localize(image))
+              path.join(config.dir.build.images, baseDir, image)
             md:(filePath)->
               fullFilePath = path.join(config.dir.src.htdocs,filePath)
               contents = fs.readFileSync(fullFilePath,'utf8')
               marked(contents)
         .pipe plugins.rename
-          dirname: localize.language.path
+          dirname: localize.language.url
     return es.merge.apply(es,files)
       .pipe(gulp.dest(config.dir.build.base))
       .pipe plugins.connect.reload()

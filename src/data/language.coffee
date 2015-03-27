@@ -1,8 +1,8 @@
 module.exports =
   primary: 
-    path: ''
+    url: '/ka'
     code: 'ka'
   secondary: 
-    path: 'en'
+    url: '/'
     code: 'en'
     

@@ -1,16 +1,19 @@
 vsprintf = require('sprintf').vsprintf || []
 gutil = require("gulp-util")
+path = require("path")
 R = require 'ramda'
 T = require '../../src/data/constructors/t'
 Path = require '../../src/data/constructors/path'
+Asset = require '../../src/data/constructors/asset'
 
 isT = R.is(T)
 isObject = R.is(Object)
 isPath = R.is(Path)
+isAsset = R.is(Asset)
 isString = R.is(String)
 
 mapData = R.curry (localize, data) ->
-  if R.or(isT(data), isPath(data))
+  if R.or(isT(data), isPath(data), isAsset(data))
     localize(data)
   else if isObject(data)
     R.mapObj(mapData(localize), data)
@@ -25,8 +28,10 @@ getLocaizer = R.curry (locals,language) ->
       obj = format
 
     if isPath(obj)
+      value = path.join(language.url, obj.path)
+    else if isAsset(obj)
       value = obj.path
-      args = [language.path].concat(args);
+      args = [language.code].concat(args);
     else
       value = obj[language.code]
 
@@ -43,9 +48,6 @@ getLocaizer = R.curry (locals,language) ->
   localize
   
 
-log = (a)->
-  console.log a
-  a
 
 module.exports = (languages, locals) ->
   mapData: mapData

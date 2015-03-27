@@ -30,7 +30,7 @@ config = addLocalsToConfig '../src/data/',
       images: './src/images/'
       htdocs: './src/htdocs/'
       scripts: './src/scripts/'
-      locals: './src/locals/'
+      locals: './src/data/'
     build: 
       base: './build'
       images: '/images/'
