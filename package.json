@@ -1,7 +1,7 @@
 {
   "name": "staticos",
-  "version": "0.0.0",
-  "description": "personal static site generate based on gulp.js",
+  "version": "0.1.0",
+  "description": "double lingual static site generator based on gulp.js",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
